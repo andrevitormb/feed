@@ -9,22 +9,25 @@ export function Post({author,publishedAt,content}) {
     const [comments, setComments] = useState([
         'Great post!',
     ])
+
+    const [newCommentChange, setNewCommentChange] = useState('')
     
     const handleCreateNewComment = () => {
         event.preventDefault()
 
-        const newComment = event.target.comment.value
-        console.log(newComment)
+       setComments([...comments, newCommentChange])
+       setNewCommentChange('')
+    }
 
-       setComments([...comments, newComment])
-
-        event.target.comment.value = ''
+    const handleNewCommentChange = () => {
+        setNewCommentChange(event.target.value)
     }
     
     const publishedDateFormatted = format(publishedAt, "d 'of' LLLL 'at' HH:mm ")
 
     const publishedDateRelativeToNow = formatDistanceToNow(publishedAt,{
         addSuffix: true ,
+
     })
     return (
     <article className={styles.post}>
@@ -52,7 +55,9 @@ export function Post({author,publishedAt,content}) {
             <strong>Type your Feedback</strong>
             <textarea 
                 name='comment'
-                placeholder='Type your comment' 
+                placeholder='Type your comment'
+                onChange={handleNewCommentChange} 
+                value={newCommentChange}
             />
             <footer>
                 <button type='submit'>Comment</button>
