@@ -7,13 +7,18 @@ import styles from './Post.module.css'
 
 export function Post({author,publishedAt,content}) {
     const [comments, setComments] = useState([
-        1,
-        2
+        'Great post!',
     ])
     
     const handleCreateNewComment = () => {
         event.preventDefault()
-       setComments([...comments, comments.length + 1])
+
+        const newComment = event.target.comment.value
+        console.log(newComment)
+
+       setComments([...comments, newComment])
+
+        event.target.comment.value = ''
     }
     
     const publishedDateFormatted = format(publishedAt, "d 'of' LLLL 'at' HH:mm ")
@@ -46,6 +51,7 @@ export function Post({author,publishedAt,content}) {
         <form onSubmit={handleCreateNewComment} className={styles.commentForm} action="">
             <strong>Type your Feedback</strong>
             <textarea 
+                name='comment'
                 placeholder='Type your comment' 
             />
             <footer>
@@ -54,7 +60,7 @@ export function Post({author,publishedAt,content}) {
         </form>
         <div className={styles.commentList}>
             {comments.map(comment =>{
-                return <Comment/>
+                return <Comment content={comment}/>
             })}
             
         </div>
