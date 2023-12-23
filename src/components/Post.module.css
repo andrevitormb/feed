@@ -109,6 +109,11 @@
   .commentForm button[type="submit"]:not(:disabled):hover {
     background: var(--green-300);
   }
+  .commentForm button[type='submit']:disabled{
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: var(--red-500);
+  }
 
   .commentList{
     margin-top: 2rem;

@@ -45,6 +45,7 @@ export function Post({author,publishedAt,content}) {
     //ArrayOriginal.filter(arrayOriginal => { arrayOriginal != ItenSelecionado })
     }
 
+    const isNewCommentEmpty = newCommentChange.trim().length === 0
     
 
     return (
@@ -80,7 +81,7 @@ export function Post({author,publishedAt,content}) {
                 onInvalid={handleNewCommentInvalid}
             />
             <footer>
-                <button type='submit'>Comment</button>
+                <button type='submit' disabled={isNewCommentEmpty}>Comment</button>
             </footer>
         </form>
         <div className={styles.commentList}>
