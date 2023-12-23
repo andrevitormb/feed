@@ -20,6 +20,7 @@ export function Post({author,publishedAt,content}) {
     }
 
     const handleNewCommentChange = () => {
+        event.target.setCustomValidity('')
         setNewCommentChange(event.target.value)
     }
     
@@ -30,13 +31,18 @@ export function Post({author,publishedAt,content}) {
 
     })
 
-    const deleteComment = (comment) => {
-        const commentWithoutDeletedone = comments.filter(comment => {
-            comments != comment
-        })
+    const handleNewCommentInvalid = ()=>{
+        event.target.setCustomValidity('')
+        event.target.setCustomValidity('You must enter a comment before creating a new comment')
+    }
 
+    const deleteComment = (commentToDelete) => {
+        const commentWithoutDeletedone = comments.filter(comment => {
+          return comment != commentToDelete
+        })
         setComments(commentWithoutDeletedone)
-    //ArrayOriginal.filter(ItenSelecionado => { arrayOriginal != ItenSelecionado })
+       
+    //ArrayOriginal.filter(arrayOriginal => { arrayOriginal != ItenSelecionado })
     }
 
     
@@ -70,6 +76,8 @@ export function Post({author,publishedAt,content}) {
                 placeholder='Type your comment'
                 onChange={handleNewCommentChange} 
                 value={newCommentChange}
+                required
+                onInvalid={handleNewCommentInvalid}
             />
             <footer>
                 <button type='submit'>Comment</button>
