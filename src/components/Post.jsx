@@ -44,6 +44,7 @@ export function Post({author,publishedAt,content}) {
        
     //ArrayOriginal.filter(arrayOriginal => { arrayOriginal != ItenSelecionado })
     }
+  
 
     const isNewCommentEmpty = newCommentChange.trim().length === 0
     
