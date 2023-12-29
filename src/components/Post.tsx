@@ -84,7 +84,7 @@ export function Post({author,publishedAt,content}:PostProps) {
                     return <p key={line.content}>{line.content}</p>
                 }else if (line.type ==='link'){
                     return <p key={line.content}><a href='#'>{line.content}</a></p>
-                 }
+                }
                 
             })}
         </div>
